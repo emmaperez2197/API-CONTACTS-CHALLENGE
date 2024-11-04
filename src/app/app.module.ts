@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ContactModule } from 'src/contact/contact.module';
 
+const { DB_HOST, DB_NAME, DB_PROTOCOL } = process.env;
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ContactModule,
+    MongooseModule.forRoot(`${DB_PROTOCOL}://${DB_HOST}/${DB_NAME}`),
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
