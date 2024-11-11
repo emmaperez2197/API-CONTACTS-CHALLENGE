@@ -19,7 +19,7 @@ Utilizamos el patrón de Inyección de Dependencias para gestionar automáticame
 
 ### 🏛️ **Patrón Repository**
 
-Aplicamos el patrón Repository para abstraer la lógica de acceso a la base de datos, utilizando **TypeORM** para interactuar con una base de datos **PostgreSQL**.
+Aplicamos el patrón Repository para abstraer la lógica de acceso a la base de datos, utilizando **Mongoose** para interactuar con una base de datos **MongoDB**.
 
 ### 🌐 **Controladores (Controllers)**
 
