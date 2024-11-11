@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: app-contacts
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '4000:3000'
+    environment:
+      - PORT=3000
+      - DATABASE_HOST=db-contacts-docker
+      - DATABASE_NAME=api_challenge
+      - NODE_ENV=development
+    volumes:
+      - ./node_modules:/app/node_modules
+      - ./src:/app/src
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: db-contacts-docker
+    restart: always
+    ports:
+      - '27018:27017'
+    environment:
+      MONGO_INITDB_DATABASE: api-contacts
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
