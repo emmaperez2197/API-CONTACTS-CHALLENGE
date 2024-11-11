@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ContactModule } from 'src/contact/contact.module';
+import { CommonModule } from 'src/common/common.module';
+import { CoreModule } from 'src/modules/core.module';
+import { DatabaseModule } from 'src/settings/database/database.module';
+import { EnvironmentModule } from 'src/settings/environment/environment.module';
 
-const { DB_HOST, DB_NAME, DB_PROTOCOL } = process.env;
 @Module({
-  imports: [
-    ContactModule,
-    MongooseModule.forRoot(`${DB_PROTOCOL}://${DB_HOST}/${DB_NAME}`),
-  ],
+  imports: [CommonModule, CoreModule, EnvironmentModule, DatabaseModule],
   controllers: [],
   providers: [],
 })
